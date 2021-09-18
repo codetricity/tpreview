@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-String prettify(String textString) {
+String prettify(Map<String, dynamic> data) {
   JsonEncoder encoder = JsonEncoder.withIndent('  ');
-  String dartMap = jsonDecode(textString);
-  String output = encoder.convert(dartMap);
+  String output = encoder.convert(data);
   return output;
 }
