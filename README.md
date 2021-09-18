@@ -6,7 +6,6 @@ The tester can also be used to test a subset of common camera commands.
 
 ## Usage
 
-RICOH THETA SC2 with firmware 1.64
 
 ```shell
 build> .\tpreview.exe help   
@@ -27,6 +26,8 @@ Run "tpreview help <command>" for more information about a command.
 ```
 
 ## Examples
+
+Examples below are with RICOH THETA SC2 with firmware 1.64
 
 ### tpreview state
 
