@@ -108,4 +108,8 @@ cd .\build\
 .\tpreview.exe info   
 ```
 
+## Status
 
+Sept 18, 2021: live preview save to frames is working with SC2
+
+![live preview screenshot](docs/images/live_preview_screenshot_1.png)
