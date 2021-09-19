@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:tpreview/basic_test.dart';
 import 'package:tpreview/info.dart';
-import 'package:tpreview/save_frames.dart';
+import 'package:tpreview/save_frames_cli.dart';
 import 'package:tpreview/state.dart';
 import 'package:tpreview/take_picture.dart';
 
