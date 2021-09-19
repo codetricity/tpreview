@@ -29,6 +29,37 @@ Run "tpreview help <command>" for more information about a command.
 
 Examples below are with RICOH THETA SC2 with firmware 1.64
 
+### saveFrames
+
+With no options, will save 5 frames at 1 fps.
+
+```shell
+tpreview.exe saveFrames
+```
+
+![live preview screenshot](docs/images/live_preview_screenshot_1.png)
+
+#### Changing number of frames and delay between frames
+
+Saving 10 frames with a delay of 10 seconds between frames.  10 seconds
+is 10000 milliseconds.
+
+Example shown using dart command on uncompiled application in `bin\tpreview.dart`.
+Test with SC2 firmware 1.64.
+
+```shell
+\tpreview\bin> dart .\tpreview.dart saveFrames --frames=10 --delay 10000
+frame 0
+total bytes received 0.063492MB
+...
+```
+![live preview screenshot 2](docs/images/live_preview_screenshot_2.png)
+
+In the example above, I am holding the camera up to my computer monitor
+to test a moving scene.  I am playing a moving from YouTube on my
+computer screen for the motion.
+
+
 ### tpreview state
 
 ```json
@@ -112,4 +143,3 @@ cd .\build\
 
 Sept 18, 2021: live preview save to frames is working with SC2
 
-![live preview screenshot](docs/images/live_preview_screenshot_1.png)

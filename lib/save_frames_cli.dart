@@ -20,10 +20,10 @@ class SaveFrames extends Command {
     int delay = 1000;
     if (argResults != null) {
       if (argResults!.wasParsed('frames')) {
-        frames = (argResults!['frames']).toInt();
+        frames = int.parse((argResults!['frames']));
       }
       if (argResults!.wasParsed('delay')) {
-        delay = (argResults!['delay']).toInt();
+        delay = int.parse((argResults!['delay']));
       }
     }
     saveFrames(frames: frames, delay: delay);

@@ -21,7 +21,8 @@ void saveFrames({required int frames, int delay = 0}) async {
   int frameCount = 0;
   int totalBytesReceived = 0;
 
-  for (var i = 0; i < frames; i++) {
+  // start at 1 for the file names only
+  for (var i = 1; i < frames + 1; i++) {
     listOfFiles.add(File('theta_images/sc2_frame_$i.jpg'));
   }
 
