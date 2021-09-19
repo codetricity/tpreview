@@ -12,7 +12,7 @@ class State extends Command {
 
   @override
   void run() async {
-    String response = await ThetaBase.post('state', {});
+    String response = await ThetaBase.post('state');
     print(response);
   }
 }

@@ -12,7 +12,7 @@ class TakePicture extends Command {
 
   @override
   void run() async {
-    String response = await command('takePicture', {});
+    String response = await command('takePicture');
     print(response);
   }
 }

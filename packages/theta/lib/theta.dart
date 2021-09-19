@@ -6,3 +6,4 @@ library theta;
 export 'src/theta_base.dart';
 export 'src/prettify.dart';
 export 'src/command.dart';
+export 'src/save_frames.dart';

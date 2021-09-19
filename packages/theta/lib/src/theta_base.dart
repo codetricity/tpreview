@@ -33,18 +33,26 @@ class ThetaBase {
     }
   } // end get
 
-  static Future<String> post(String path, Map<String, dynamic> body) async {
+  static const Map<String, dynamic> emptyBody = {};
+  static Future<dynamic> post(String path,
+      {Map<String, dynamic> body = emptyBody,
+      ResponseType responseType = ResponseType.json}) async {
     String url = '$baseUrl$path';
     try {
       var response = await dio.post(
         url,
         data: jsonEncode(body),
         options: Options(
+          responseType: responseType,
           headers: {'ContentType': contentType},
         ),
       );
-      Map<String, dynamic> responseData = response.data;
-      return prettify(responseData);
+      if (responseType == ResponseType.stream) {
+        return response;
+      } else {
+        Map<String, dynamic> responseData = response.data;
+        return prettify(responseData);
+      }
     } catch (error) {
       String errorMessage = '*********************** \n'
           'Command failed.  First check if the camera is \n'
