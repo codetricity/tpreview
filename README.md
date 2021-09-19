@@ -59,6 +59,15 @@ In the example above, I am holding the camera up to my computer monitor
 to test a moving scene.  I am playing a moving from YouTube on my
 computer screen for the motion.
 
+#### Z1 test
+
+With firmware 2.00.1, the test results are the same.
+
+![z1 screenshot](docs/images/z1_live_preview.png)
+
+Each frame can be viewed in a viewer such as FSP Viewer.
+
+![z1 moving screenshot](docs/images/z1_moving_screenshot.gif)
 
 ### tpreview state
 

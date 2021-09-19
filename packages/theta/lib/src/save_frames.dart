@@ -23,7 +23,7 @@ void saveFrames({required int frames, int delay = 0}) async {
 
   // start at 1 for the file names only
   for (var i = 1; i < frames + 1; i++) {
-    listOfFiles.add(File('theta_images/sc2_frame_$i.jpg'));
+    listOfFiles.add(File('theta_images/theta_frame_$i.jpg'));
   }
 
   bool cancelledSubscription = false;
