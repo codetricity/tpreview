@@ -102,7 +102,10 @@ Each frame can be viewed in a viewer such as FSP Viewer.
 }
 ```
 
-### tpreview.dart info
+### dart tpreview.dart info
+
+This example shows how to run the `bin/tpreview.dart` source file instead
+of the compiled binary.  The compiled binary will run faster.
 
 ```json
 {
