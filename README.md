@@ -151,6 +151,15 @@ cd .\build\
 .\tpreview.exe info   
 ```
 
+## conversion to video
+
+With ImageMagick and ffmpeg installed, you can convert the frames into a video
+file with something like this.
+
+```shell
+convert -delay 0.5 -quality 50 theta_frame_*.jpg movie.mpg
+```
+
 ## Status
 
 Sept 19, 2021: tested with Z1 and appears to work fine.
