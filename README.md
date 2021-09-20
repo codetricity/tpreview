@@ -153,12 +153,10 @@ cd .\build\
 
 ## conversion to video
 
-With ImageMagick and ffmpeg installed, you can convert the frames into a video
-file with something like this.
+Combined frames into movie with editor.
 
-```shell
-convert -delay 0.5 -quality 50 theta_frame_*.jpg movie.mpg
-```
+![frames to movie](docs/images/image_to_movie.gif)
+
 
 ## Status
 
