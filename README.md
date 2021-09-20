@@ -90,6 +90,16 @@ Each frame can be viewed in a viewer such as FSP Viewer.
 You cannot use the WebAPI to change the resolution or framerate of the SC2.
 The API for [previewFormat](https://api.ricoh/docs/theta-web-api-v2.1/options/preview_format/) only works with the V and Z1.
 
+#### Set to 1920x960 @ 8fps
+
+```shell
+dart .\tpreview.dart previewFormat --width=1920 --framerate=8
+{"name":"camera.setOptions","state":"done"}
+```
+
+Save frames and verify.
+
+![frame dimensions 1920x960](docs/images/frame_size.png)
 
 ### tpreview state
 
