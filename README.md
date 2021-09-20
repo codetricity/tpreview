@@ -1,14 +1,12 @@
 # theta preview tester
 
-Command line tester for RICOH THETA livePreview.
+Command line tester for RICOH THETA [get live preview API](https://api.ricoh/docs/theta-web-api-v2.1/commands/camera.get_live_preview/).
 
 The tester can also be used to test a subset of common camera commands.
 
 ## Usage
 
-
 ```shell
-build> .\tpreview.exe help   
 RICOH THETA Live Preview tester
 
 Usage: tpreview <command> [arguments]
@@ -19,11 +17,29 @@ Global options:
 Available commands:
   basicTest     test command for library functionality
   info          camera information, including model, serial number
+  saveFrames    save frames from live preview stream
   state         camera status, battery level, API version, last file URL
   takePicture   take single still image.  Camera must be in still image mode
 
 Run "tpreview help <command>" for more information about a command.
 ```
+
+## Options for saveFrames
+
+```shell
+dart .\tpreview.dart saveFrames --help
+save frames from live preview stream
+
+Usage: tpreview saveFrames [arguments]
+-h, --help      Print this usage information.
+    --frames    --frames=5
+    --delay     --delay=1000  : for 1000ms
+
+Run "tpreview help" to see global options.
+```
+
+As the maximum frame rate is 30fps, the lowest delay between frames is
+34 milliseconds.
 
 ## Examples
 
