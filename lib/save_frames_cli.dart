@@ -24,6 +24,9 @@ class SaveFrames extends Command {
       }
       if (argResults!.wasParsed('delay')) {
         delay = int.parse((argResults!['delay']));
+        if (delay < 34) {
+          delay = 34;
+        }
       }
     }
     saveFrames(frames: frames, delay: delay);
