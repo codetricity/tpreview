@@ -14,7 +14,7 @@ class ThetaBase {
       var response = await dio.get(
         url,
         options: Options(
-          headers: {'ContentType': contentType},
+          headers: {'Content-Type': contentType},
         ),
       );
       Map<String, dynamic> responseData = response.data;
@@ -44,7 +44,7 @@ class ThetaBase {
         data: jsonEncode(body),
         options: Options(
           responseType: responseType,
-          headers: {'ContentType': contentType},
+          headers: {'Content-Type': contentType},
         ),
       );
       if (responseType == ResponseType.stream) {

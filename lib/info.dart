@@ -1,5 +1,4 @@
 import 'package:args/command_runner.dart';
-import 'package:dio/dio.dart';
 import 'package:theta/theta.dart';
 
 class Info extends Command {

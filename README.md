@@ -85,6 +85,12 @@ Each frame can be viewed in a viewer such as FSP Viewer.
 
 ![z1 moving screenshot](docs/images/z1_moving_screenshot.gif)
 
+### Setting Resolution and fps with the API
+
+You cannot use the WebAPI to change the resolution or framerate of the SC2.
+The API for [previewFormat](https://api.ricoh/docs/theta-web-api-v2.1/options/preview_format/) only works with the V and Z1.
+
+
 ### tpreview state
 
 ```json
