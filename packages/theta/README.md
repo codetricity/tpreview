@@ -11,26 +11,35 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+RICOH THETA API tester built with dio.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+![video screengrab](docs/images/live_preview.gif)
+
+* http post
+* http get
+* theta commands (osc/commands/execute)
+* theta options (osc/commands/execute with payload `setOptions`)
+
 
 ## Getting started
 
+<!--
 TODO: List prerequisites and provide or point to information on how to
 start using the package.
+-->
+
+Works with RICOH THETA Z1 and V.  Some features work with the SC2.
 
 ## Usage
-
+<!-- 
 TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder. 
 
 ```dart
 const like = 'sample';
-```
+``` -->
 
 ## Additional information
 
