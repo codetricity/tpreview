@@ -3,12 +3,18 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:theta/theta.dart';
+import 'package:dcli/dcli.dart';
 
 /// number of frames to save to file.
 /// delay between frames in milliseconds.
 /// saveFrames(frames: 5, delay: 1000) will save 5 frames,
 /// one per second.
 void saveFrames({required int frames, int delay = 0}) async {
+  // create theta_images directory if it doesn't exist
+  if (!exists('./theta_images')) {
+    print('create direction theta_images to store frames');
+    createDir('./theta_images');
+  }
   var response =
       await command('getLivePreview', responseType: ResponseType.stream);
 
