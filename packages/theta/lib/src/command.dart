@@ -16,9 +16,7 @@ Future<dynamic> command(String baseName,
       responseType: responseType,
       body: {
         'name': 'camera.$baseName',
-        'parameters': jsonEncode(
-          parameters,
-        )
+        'parameters': parameters,
       });
 
   return response;

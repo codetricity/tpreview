@@ -3,6 +3,7 @@ import 'package:args/command_runner.dart';
 import 'package:tpreview/basic_test.dart';
 import 'package:tpreview/image_mode_cli.dart';
 import 'package:tpreview/info.dart';
+import 'package:tpreview/list_files_cli.dart';
 import 'package:tpreview/preview_format_cli.dart';
 import 'package:tpreview/save_frames_cli.dart';
 import 'package:tpreview/set_option_cli.dart';
@@ -20,7 +21,8 @@ void main(List<String> arguments) async {
     ..addCommand(SetOption())
     // ..addCommand(BasicTest())
     ..addCommand(ImageMode())
-    ..addCommand(PreviewFormat());
+    ..addCommand(PreviewFormat())
+    ..addCommand(ListFiles());
 
   await runner.run(arguments).catchError((error) {
     if (error is! UsageException) throw error;

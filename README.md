@@ -7,7 +7,7 @@ The tester can also be used to test a subset of common camera commands.
 ## Usage
 
 ```shell
-dart .\tpreview.dart    
+dart tpreview.dart --help        
 RICOH THETA Live Preview tester
 
 Usage: tpreview <command> [arguments]
@@ -18,6 +18,7 @@ Global options:
 Available commands:
   imageMode       Switch camera to image mode
   info            camera information, including model, serial number
+  listFiles       list video and image files on camera
   previewFormat   Set preview format
   saveFrames      save frames from live preview stream
   setOption       Set single camera option
