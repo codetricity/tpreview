@@ -197,6 +197,6 @@ Combined frames into movie with editor.
 
 ## Status
 
-Sept 19, 2021: tested with Z1 and appears to work fine.
-Sept 18, 2021: live preview save to frames is working with SC2
+* Sept 19, 2021: tested with Z1 and appears to work fine.
+* Sept 18, 2021: live preview save to frames is working with SC2
 
