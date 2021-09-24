@@ -34,6 +34,9 @@ class ThetaBase {
   } // end get
 
   static const Map<String, dynamic> emptyBody = {};
+
+  /// path is everything after osc/
+  /// examples: post('state')
   static Future<dynamic> post(String path,
       {Map<String, dynamic> body = emptyBody,
       ResponseType responseType = ResponseType.json}) async {

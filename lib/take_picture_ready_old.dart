@@ -14,6 +14,15 @@ class TakePictureReady extends Command {
 
   @override
   void run() async {
+    Future<bool> isReady(String id) async {
+      Map<String, dynamic> commandStatus =
+          jsonDecode(await theta.commandStatus(id: id));
+      if (commandStatus['state'] == 'done') {
+        return true;
+      }
+      return false;
+    }
+
     String response = await theta.command('takePicture');
     Stopwatch stopwatch = Stopwatch();
     stopwatch.start();
@@ -22,8 +31,8 @@ class TakePictureReady extends Command {
       String id = responseMap['id'];
       Stopwatch progressUpdateTimer = Stopwatch();
       progressUpdateTimer.start();
-      while (await theta.commandStatus(id) != 'done') {
-        await theta.commandStatus(id);
+      while (!(await isReady(id))) {
+        Future.delayed(Duration(milliseconds: 100));
         if (progressUpdateTimer.elapsedMilliseconds > 1000) {
           progressUpdateTimer.reset();
           print(
