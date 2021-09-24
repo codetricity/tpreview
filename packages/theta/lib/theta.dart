@@ -8,3 +8,4 @@ export 'src/prettify.dart';
 export 'src/command.dart';
 export 'src/save_frames.dart';
 export 'src/set_option.dart';
+export 'src/command_status.dart';

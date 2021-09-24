@@ -1,5 +1,5 @@
 import 'package:args/command_runner.dart';
-import 'package:theta/theta.dart';
+import 'package:theta/theta.dart' as theta;
 
 class Info extends Command {
   @override
@@ -10,7 +10,7 @@ class Info extends Command {
 
   @override
   void run() async {
-    String response = await ThetaBase.get('info');
+    String response = await theta.ThetaBase.get('info');
     print(response);
   }
 }

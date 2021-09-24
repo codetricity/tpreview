@@ -9,6 +9,7 @@ import 'package:tpreview/save_frames_cli.dart';
 import 'package:tpreview/set_option_cli.dart';
 import 'package:tpreview/state.dart';
 import 'package:tpreview/take_picture.dart';
+import 'package:tpreview/take_picture_ready.dart';
 import 'package:tpreview/video_mode_cli.dart';
 
 void main(List<String> arguments) async {
@@ -22,7 +23,8 @@ void main(List<String> arguments) async {
     // ..addCommand(BasicTest())
     ..addCommand(ImageMode())
     ..addCommand(PreviewFormat())
-    ..addCommand(ListFiles());
+    ..addCommand(ListFiles())
+    ..addCommand(TakePictureReady());
 
   await runner.run(arguments).catchError((error) {
     if (error is! UsageException) throw error;

@@ -41,10 +41,35 @@ to `/example` folder.
 const like = 'sample';
 ``` -->
 
+Get camera information
+
+```dart
+import 'package:theta/theta.dart';
+String response = await ThetaBase.get('info');
+```
+
+take picture
+
+```dart
+import 'package:theta/theta.dart';
+String response = await command('takePicture');
+```
+
+set option
+
+```dart
+import 'package:theta/theta.dart';
+String response = await setOption(
+    name: 'captureMode', value: 'image');
+```
+
 ## Additional information
 
 <!-- TODO: Tell users more about the package: where to find more information, how to 
 contribute to the package, how to file issues, what response they can expect 
 from the package authors, and more. -->
+* [Official RICOH THETA API Reference](https://api.ricoh/docs/theta-web-api-v2.1/)
+
+Post questions to:
 
 * [RICOH THETA Developer community](https://community.theta360.guide)
