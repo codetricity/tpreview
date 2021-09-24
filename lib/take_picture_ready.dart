@@ -12,8 +12,23 @@ class TakePictureReady extends Command {
   final description =
       'take single still image and show when camera is ready for next command';
 
+  TakePictureReady() {
+    argParser.addOption('report',
+        help: '--report=full for 100ms status updates');
+  }
+
   @override
   void run() async {
+    int reportDelay = 1000;
+    if (argResults != null) {
+      if (argResults!.wasParsed('report')) {
+        if (argResults!['report'] != 'full') {
+          printUsage();
+        } else {
+          reportDelay = 100;
+        }
+      }
+    }
     String response = await theta.command('takePicture');
     Stopwatch stopwatch = Stopwatch();
     stopwatch.start();
@@ -24,7 +39,7 @@ class TakePictureReady extends Command {
       progressUpdateTimer.start();
       while (await theta.commandStatus(id) != 'done') {
         await theta.commandStatus(id);
-        if (progressUpdateTimer.elapsedMilliseconds > 1000) {
+        if (progressUpdateTimer.elapsedMilliseconds > reportDelay) {
           progressUpdateTimer.reset();
           print(
               'In progress after: ${stopwatch.elapsedMilliseconds} milliseconds');

@@ -63,6 +63,18 @@ String response = await setOption(
     name: 'captureMode', value: 'image');
 ```
 
+check command status to see when camera is ready for next command.
+For example, if you use `command('takePicture')`, you may want to
+wait for the camera to be ready before you issue another command. 
+The SC2 take 8 to 9 seconds to be ready for another command.
+
+```dart
+import 'package:theta/theta.dart' as theta;
+
+while (await theta.commandStatus(id) != 'done') {
+  await theta.commandStatus(id);
+```
+
 ## Additional information
 
 <!-- TODO: Tell users more about the package: where to find more information, how to 
