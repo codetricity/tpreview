@@ -32,6 +32,23 @@ start using the package.
 
 Works with RICOH THETA Z1 and V.  Some features work with the SC2.
 
+### Android
+
+Enable use with http instead of the default https only.
+
+`project_home/android/app/src/debug/AndroidManifest.xml`
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tpreview_flutter">
+    <!-- Flutter needs it to communicate with the running application
+         to allow setting breakpoints, to provide hot reload, etc.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application android:usesCleartextTraffic="true" />
+</manifest>
+```
+
 ## Usage
 <!-- 
 TODO: Include short and useful examples for package users. Add longer examples
