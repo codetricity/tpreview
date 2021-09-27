@@ -10,3 +10,4 @@ export 'src/save_frames.dart';
 export 'src/set_option.dart';
 export 'src/command_status.dart';
 export 'src/check_for_idle.dart';
+export 'src/get_live_preview.dart';

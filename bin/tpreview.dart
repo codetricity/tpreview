@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:args/command_runner.dart';
-import 'package:tpreview/basic_test.dart';
 import 'package:tpreview/image_mode_cli.dart';
 import 'package:tpreview/info.dart';
 import 'package:tpreview/interval_shoot.dart';
