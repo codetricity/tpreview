@@ -1,6 +1,8 @@
-# theta preview tester
+# RICOH THETA Live Preview Tester for V and Z1 models
 
 Command line tester for RICOH THETA [get live preview API](https://api.ricoh/docs/theta-web-api-v2.1/commands/camera.get_live_preview/).
+
+Read about [limitations using this program with the SC2](docs/sc2/sc2_problems.md).
 
 The tester can also be used to test a subset of common camera commands.
 
