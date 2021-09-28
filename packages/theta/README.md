@@ -23,6 +23,7 @@ RICOH THETA API tester built with dio.
 * http get
 * theta commands (osc/commands/execute)
 * theta options (osc/commands/execute with payload `setOptions`)
+* get live preview - returns a stream
 
 
 ## Getting started
@@ -96,7 +97,9 @@ while (await theta.commandStatus(id) != 'done') {
 
 ### live preview
 
-full code for this example is in the examples section of the library
+Example shows how to save frame to file for inspection and testing.
+Full code for this example is in the examples section of the library.
+
 
 ```dart
   var frameCount = 0;
