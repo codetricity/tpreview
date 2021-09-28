@@ -11,6 +11,8 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
+# theta lib for building API test apps
+
 RICOH THETA API tester built with dio.
 
 ## Features
@@ -90,6 +92,19 @@ import 'package:theta/theta.dart' as theta;
 
 while (await theta.commandStatus(id) != 'done') {
   await theta.commandStatus(id);
+```
+
+### live preview
+
+full code for this example is in the examples section of the library
+
+```dart
+  var frameCount = 0;
+  await getLivePreview(controller, frames: frames, frameDelay: delay);
+  controller.stream.listen((frame) {
+    listOfFiles[frameCount].writeAsBytes(frame);
+    frameCount++;
+  });
 ```
 
 ## Additional information
