@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:theta/src/command.dart';
+import 'package:theta/src/post_basic.dart';
 
 // SC2 does fairly well at 250ms delay
 // loses about 1 frame out of 150
@@ -11,12 +11,14 @@ import 'package:theta/src/command.dart';
 
 Future<void> getLivePreview(StreamController controller,
     {int frames = 5, frameDelay = 34}) async {
+  const livePreviewPayload = {'name': 'camera.getLivePreview'};
   Map<String, dynamic> additionalHeaders = {
     'Accept': 'multipart/x-mixed-replace'
   };
-
-  var response = await command('getLivePreview',
-      responseType: ResponseType.stream, additionalHeaders: additionalHeaders);
+  var response = await postBasic(
+      payload: livePreviewPayload,
+      responseType: ResponseType.stream,
+      headersAddition: additionalHeaders);
 
   Stream dataStream = response.data.stream;
 
