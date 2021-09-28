@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
 import 'package:theta/theta.dart';
 
@@ -17,7 +20,7 @@ class SaveFrames extends Command {
   @override
   void run() async {
     int frames = 5;
-    int delay = 1000;
+    int delay = 0;
     if (argResults != null) {
       if (argResults!.wasParsed('frames')) {
         frames = int.parse((argResults!['frames']));
@@ -26,9 +29,22 @@ class SaveFrames extends Command {
         delay = int.parse((argResults!['delay']));
         if (delay < 34) {
           delay = 34;
+          print('setting to minimum delay of 34ms');
         }
       }
     }
-    saveFrames(frames: frames, delay: delay);
+    StreamController<List<int>> controller = StreamController();
+    List<File> listOfFiles = [];
+    for (var i = 1; i < frames + 1; i++) {
+      File tempFile =
+          await File('theta_frames/theta_frame_$i.jpg').create(recursive: true);
+      listOfFiles.add(tempFile);
+    }
+    var frameCount = 0;
+    await getLivePreview(controller, frames: frames, frameDelay: delay);
+    controller.stream.listen((frame) {
+      listOfFiles[frameCount].writeAsBytes(frame);
+      frameCount++;
+    });
   }
 }

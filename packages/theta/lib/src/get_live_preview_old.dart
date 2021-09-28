@@ -1,24 +1,31 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:theta/src/post_basic.dart';
+import '../theta.dart';
 
-// SC2 does fairly well at 250ms delay
-// loses about 1 frame out of 150
-// at 300ms, lost 1 frame out of 300
-// at 350ms, lost 1 frame out of 300
-// at 400ms, lost 1 frame out of 300
-
+/// get motionJPEG video data from RICOH THETA
+/// returns a stream
+/// frames = 5 will return 5 frames
+/// you must pass getLivePreview a StreamController to
+/// manage the return stream
+/// Example of listening to the return stream and writing
+/// bytes to file:
+///   StreamController<List<int>> controller = StreamController();
+///   await getLivePreview(controller, frames: frames);
+///  controller.stream.listen((frame) {
+///    listOfFiles[frameCount].writeAsBytes(frame);
+///    frameCount++;
+///  });
 Future<void> getLivePreview(StreamController controller,
-    {int frames = 5, frameDelay = 34}) async {
-  const livePreviewPayload = {'name': 'camera.getLivePreview'};
+    {int frames = 5, int frameDelay = 33}) async {
+  if (frameDelay < 33) {
+    frameDelay = 33;
+  }
   Map<String, dynamic> additionalHeaders = {
     'Accept': 'multipart/x-mixed-replace'
   };
-  var response = await postBasic(
-      payload: livePreviewPayload,
-      responseType: ResponseType.stream,
-      headersAddition: additionalHeaders);
+  var response = await command('getLivePreview',
+      additionalHeaders: additionalHeaders, responseType: ResponseType.stream);
 
   Stream dataStream = response.data.stream;
 
@@ -28,23 +35,22 @@ Future<void> getLivePreview(StreamController controller,
   int frameCount = 0;
   bool keepRunning = true;
 
-  // frame delay useful for testing SC2. milliseconds
-  Stopwatch frameTimer = Stopwatch();
-  frameTimer.start();
+  Stopwatch delayTimer = Stopwatch();
+  delayTimer.start();
 
   StreamSubscription? subscription;
-  subscription = await dataStream.listen((chunkOfStream) {
-    if (frameCount > frames) {
+  subscription = dataStream.listen((chunkOfStream) {
+    if (frameCount >= frames + 1) {
       if (subscription != null) {
         subscription.cancel();
+        delayTimer.stop();
         keepRunning = false;
-        frameTimer.stop();
         controller.close();
       }
     }
     if (keepRunning) {
       buffer.addAll(chunkOfStream);
-      // print('current chunk of stream is ${chunkOfStream.length} bytes long');
+      // print('current chunk of stream is ${chunkOfStream.length}');
 
       for (var i = 1; i < chunkOfStream.length; i++) {
         if (chunkOfStream[i - 1] == 0xff && chunkOfStream[i] == 0xd8) {
@@ -56,16 +62,16 @@ Future<void> getLivePreview(StreamController controller,
 
         if (startIndex != -1 && endIndex != -1) {
           var frame = buffer.sublist(startIndex, endIndex);
-          if (frameTimer.elapsedMilliseconds > frameDelay) {
+          if (delayTimer.elapsedMilliseconds > frameDelay) {
             if (frameCount > 0) {
               controller.add(frame);
+
               print('framecount $frameCount');
-              frameTimer.reset();
+              delayTimer.reset();
             }
 
             frameCount++;
           }
-          // print(frame);
           startIndex = -1;
           endIndex = -1;
           buffer = [];

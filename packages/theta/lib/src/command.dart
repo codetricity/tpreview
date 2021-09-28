@@ -11,9 +11,11 @@ const Map<String, dynamic> emptyBody = {};
 /// and the response is a stream
 Future<dynamic> command(String baseName,
     {Map<String, dynamic> parameters = emptyBody,
-    ResponseType responseType = ResponseType.json}) async {
+    ResponseType responseType = ResponseType.json,
+    additionalHeaders = emptyBody}) async {
   var response = await ThetaBase.post('commands/execute',
       responseType: responseType,
+      additionalHeaders: additionalHeaders,
       body: {
         'name': 'camera.$baseName',
         'parameters': parameters,
