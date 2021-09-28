@@ -14,7 +14,7 @@ class ThetaBase {
       var response = await dio.get(
         url,
         options: Options(
-          headers: {'Content-Type': contentType},
+          headers: {'Content-Type': contentType, 'X-XSRF-Protected': 1},
         ),
       );
       Map<String, dynamic> responseData = response.data;
@@ -33,21 +33,29 @@ class ThetaBase {
     }
   } // end get
 
-  static const Map<String, dynamic> emptyBody = {};
+  static const Map<String, dynamic> emptyMap = {};
 
   /// path is everything after osc/
   /// examples: post('state')
   static Future<dynamic> post(String path,
-      {Map<String, dynamic> body = emptyBody,
-      ResponseType responseType = ResponseType.json}) async {
+      {Map<String, dynamic> body = emptyMap,
+      ResponseType responseType = ResponseType.json,
+      additionalHeaders = emptyMap}) async {
     String url = '$baseUrl$path';
+    Map<String, dynamic> headers = {
+      'Content-Type': contentType,
+      'X-XSRF-Protected': 1
+    };
+
+    headers.addAll(additionalHeaders);
+
     try {
       var response = await dio.post(
         url,
         data: jsonEncode(body),
         options: Options(
           responseType: responseType,
-          headers: {'Content-Type': contentType},
+          headers: headers,
         ),
       );
       if (responseType == ResponseType.stream) {

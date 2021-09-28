@@ -17,6 +17,11 @@ likely a usable ratio and likely something the software can compensate for.
 
 [Link to 1 minute test video](https://youtu.be/3P-YKr1dzQU).
 
+* SC2 does fairly well at 250ms delay 4fps, loses about 1 frame out of 150
+* at 300ms, lost 1 frame out of 300 
+* at 350ms, lost 1 frame out of 300
+* at 400ms, lost 1 frame out of 300
+
 ## time per frame problem
 
 The length of time each frame takes to arrive varies.  The program
