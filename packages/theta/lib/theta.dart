@@ -12,3 +12,4 @@ export 'src/command_status.dart';
 export 'src/check_for_idle.dart';
 export 'src/get_live_preview.dart';
 export 'src/get_live_preview_working_old.dart';
+export 'src/sc2_get_live_preview.dart';

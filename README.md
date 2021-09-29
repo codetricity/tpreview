@@ -1,8 +1,8 @@
-# RICOH THETA Live Preview Tester for V and Z1 models
+# RICOH THETA Live Preview Tester
 
 Command line tester for RICOH THETA [get live preview API](https://api.ricoh/docs/theta-web-api-v2.1/commands/camera.get_live_preview/).
 
-Read about [limitations using this program with the SC2](docs/sc2/sc2_problems.md).
+
 
 The tester can also be used to test a subset of common camera commands.
 
@@ -199,9 +199,14 @@ Combined frames into movie with editor.
 
 ![frames to movie](docs/images/image_to_movie.gif)
 
+## SC2 example
+
+Read about [limitations using dio  with the SC2](docs/sc2/sc2_problems.md).
+The application provides an example using http that works with the SC2.
 
 ## Status
 
+* Sept 29, 2021: using different getLivePreview functions for SC2 and V/Z1.
 * Sept 19, 2021: tested with Z1 and appears to work fine.
 * Sept 18, 2021: live preview save to frames is working with SC2
 

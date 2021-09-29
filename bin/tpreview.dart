@@ -8,6 +8,7 @@ import 'package:tpreview/preview_format_cli.dart';
 import 'package:tpreview/print_frames_cli.dart';
 import 'package:tpreview/save_frames_cli.dart';
 import 'package:tpreview/save_frames_old_cli.dart';
+import 'package:tpreview/sc2_save_frames_cli.dart';
 import 'package:tpreview/set_option_cli.dart';
 import 'package:tpreview/state.dart';
 import 'package:tpreview/take_picture.dart';
@@ -31,7 +32,7 @@ void main(List<String> arguments) async {
     ..addCommand(CheckForIdle())
     ..addCommand(IntervalShoot())
     ..addCommand(PrintFrames())
-    ..addCommand(SaveFramesOld());
+    ..addCommand(Sc2SaveFrames());
 
   await runner.run(arguments).catchError((error) {
     if (error is! UsageException) throw error;

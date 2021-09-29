@@ -1,4 +1,4 @@
-# SC2 Live Preview Problems
+# SC2 Live Preview Problems with dio
 
 The Dart program I'm using can't read SC2 frames properly at 30fps.  Some of the SC2 frames have broken images, which either creates a flickering or an "image error" for a brief moment in the displayed video.
 
