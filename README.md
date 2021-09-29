@@ -222,11 +222,52 @@ The application uses a package
 
 ### Z1 Test
 
+Tests below are run by placing the THETA in front of my computer
+monitoring that is playing a YouTube video showing rapid
+motions. Sports videos make good tests as they generally contain
+movement every frame.
+
 ![z1 live preview](packages/theta/docs/images/live_preview.gif)
 
 ### SC2 Test
 
 ![SC2 live preview](docs/sc2/images/sc2_preview_flutter.gif)
+
+### Instructions on using with Flutter
+
+Steps to use with Flutter.
+
+1. create stream controller
+2. pass controller to either getLivePreview for Z1/V or sc2GetLivePreview
+3. use StreamBuilder to take the stream
+4. convert list of bytes to Uint8List
+5. pass the bytes to `Image.memory()`
+6. enable `gaplessPlayback`
+
+### Example for SC2
+
+```dart
+  Widget build(BuildContext context) {
+    StreamController controller = StreamController();
+    sc2GetLivePreview(controller, frames: 300);
+  return Scaffold(
+// your GUI code here
+ child: StreamBuilder(
+  stream: controller.stream,
+  builder: (BuildContext context, AsyncSnapshot snapshot) {
+    if (snapshot.hasData) {
+      var imageData = Uint8List.fromList(snapshot.data);
+      return Image.memory(
+        imageData,
+        gaplessPlayback: true,
+      );
+    } else {
+      return Container();
+    }
+  }),    
+```
+
+
 
 ## Status
 
