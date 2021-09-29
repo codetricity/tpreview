@@ -202,7 +202,16 @@ Combined frames into movie with editor.
 ## SC2 example
 
 Read about [limitations using dio  with the SC2](docs/sc2/sc2_problems.md).
-The application provides an example using http that works with the SC2.
+The application provides an example using the Dart package [http](https://pub.dev/packages/http)
+that works with the SC2.
+
+Using http with the SC2 has a problem with the error
+`Connection closed before full header was received`.
+
+This appears to be a [known issue](https://github.com/flutter/flutter/issues/41573)
+with Dart and Flutter.
+
+The application appears to work despite the error.
 
 ## Status
 

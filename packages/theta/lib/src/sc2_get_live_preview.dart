@@ -41,7 +41,8 @@ void sc2GetLivePreview(controller,
         keepRunning = false;
         frameTimer.stop();
         controller.close();
-        client.close();
+
+        Future.delayed(Duration(seconds: 1), () => client.close());
       }
     }
     if (keepRunning) {

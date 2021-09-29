@@ -1,6 +1,12 @@
 # SC2 Live Preview Problems with dio
 
-The Dart program I'm using can't read SC2 frames properly at 30fps.  Some of the SC2 frames have broken images, which either creates a flickering or an "image error" for a brief moment in the displayed video.
+When using Dio, I can't read SC2 frames properly at 30fps.  Some of the SC2 frames have broken images, which either creates a flickering or an "image error" for a brief moment in the displayed video.
+
+Although I can work around this problem by using
+the [http package](https://pub.dev/packages/http), this means that
+the SC2 is using a different library from the Z1 and V.  As I am trying to use
+the same library, I've documented the problem that I'm having with dio and the SC2
+live preview.
 
 When displayed on the Flutter screen, some of the frames are not
 displaying properly.  It seems like `gaplessPlayback` can't compensate
