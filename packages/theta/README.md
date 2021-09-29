@@ -100,14 +100,14 @@ while (await theta.commandStatus(id) != 'done') {
 Example shows how to save frame to file for inspection and testing.
 Full code for this example is in the examples section of the library.
 
-
 ```dart
-  var frameCount = 0;
-  await Preview.getLivePreview(controller, frames: frames, frameDelay: delay);
-  controller.stream.listen((frame) {
-    listOfFiles[frameCount].writeAsBytes(frame);
-    frameCount++;
-  });
+var frameCount = 0;
+var preview = Preview(controller);
+await preview.getLivePreview(frames: frames, frameDelay: delay);
+controller.stream.listen((frame) {
+  listOfFiles[frameCount].writeAsBytes(frame);
+  frameCount++;
+});
 ```
 
 ## Additional information
