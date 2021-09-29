@@ -9,7 +9,7 @@ void main() async {
   // delay in milliseconds between each frame
   // SC2 may have problems if the delay is below 250
   // test with the SC2 upright in a tripod
-  const int delay = 250;
+  const int delay = 500;
   StreamController<List<int>> controller = StreamController();
   List<File> listOfFiles = [];
   for (var i = 1; i < frames + 1; i++) {

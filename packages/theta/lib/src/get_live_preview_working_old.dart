@@ -9,7 +9,7 @@ import 'package:theta/src/post_basic.dart';
 // at 350ms, lost 1 frame out of 300
 // at 400ms, lost 1 frame out of 300
 
-Future<void> getLivePreview(StreamController controller,
+Future<void> getLivePreviewOld(StreamController controller,
     {int frames = 5, frameDelay = 34}) async {
   const livePreviewPayload = {'name': 'camera.getLivePreview'};
   Map<String, dynamic> additionalHeaders = {

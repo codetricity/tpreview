@@ -28,3 +28,10 @@ The length of time each frame takes to arrive varies.  The program
 needs to wait up to a second before displaying the frame.
 
 ![sc2 frame problem](images/sc2_frame_problem.png)
+
+
+## Position of Camera
+
+The position of the camera seems to matter with my equipment.
+
+![500ms delay](images/frame_delay.png)
