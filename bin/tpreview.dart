@@ -5,6 +5,7 @@ import 'package:tpreview/info.dart';
 import 'package:tpreview/interval_shoot.dart';
 import 'package:tpreview/list_files_cli.dart';
 import 'package:tpreview/preview_format_cli.dart';
+import 'package:tpreview/print_frames_cli.dart';
 import 'package:tpreview/save_frames_cli.dart';
 import 'package:tpreview/set_option_cli.dart';
 import 'package:tpreview/state.dart';
@@ -27,7 +28,8 @@ void main(List<String> arguments) async {
     ..addCommand(ListFiles())
     ..addCommand(TakePictureReady())
     ..addCommand(CheckForIdle())
-    ..addCommand(IntervalShoot());
+    ..addCommand(IntervalShoot())
+    ..addCommand(PrintFrames());
 
   await runner.run(arguments).catchError((error) {
     if (error is! UsageException) throw error;

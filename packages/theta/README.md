@@ -103,7 +103,7 @@ Full code for this example is in the examples section of the library.
 
 ```dart
   var frameCount = 0;
-  await getLivePreview(controller, frames: frames, frameDelay: delay);
+  await Preview.getLivePreview(controller, frames: frames, frameDelay: delay);
   controller.stream.listen((frame) {
     listOfFiles[frameCount].writeAsBytes(frame);
     frameCount++;

@@ -18,7 +18,8 @@ void main() async {
     listOfFiles.add(tempFile);
   }
   var frameCount = 0;
-  await getLivePreview(controller, frames: frames, frameDelay: delay);
+  var preview = Preview(controller);
+  await preview.getLivePreview(frames: frames, frameDelay: delay);
   controller.stream.listen((frame) {
     listOfFiles[frameCount].writeAsBytes(frame);
     frameCount++;
