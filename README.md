@@ -62,7 +62,7 @@ Examples below are with RICOH THETA SC2 with firmware 1.64
 With no options, will save 5 frames at 1 fps.
 
 ```shell
-tpreview.exe saveFrames
+tpreview.exe sc2SaveFrames
 ```
 
 ![live preview screenshot](docs/images/live_preview_screenshot_1.png)
@@ -195,9 +195,10 @@ cd .\build\
 .\tpreview.exe info   
 ```
 
-## conversion to video
+## frame conversion to video for testing
 
-Combined frames into movie with editor.
+Combined frames into video with movie editor to test smoothness and check for
+broken frames.
 
 ![frames to movie](docs/images/image_to_movie.gif)
 
@@ -244,7 +245,7 @@ Steps to use with Flutter.
 5. pass the bytes to `Image.memory()`
 6. enable `gaplessPlayback`
 
-### Example for SC2
+### Flutter Example for SC2
 
 ```dart
   Widget build(BuildContext context) {
