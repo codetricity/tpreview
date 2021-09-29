@@ -224,6 +224,10 @@ The application uses a package
 
 ![z1 live preview](packages/theta/docs/images/live_preview.gif)
 
+### SC2 Test
+
+![SC2 live preview](docs/sc2/images/sc2_preview_flutter.gif)
+
 ## Status
 
 * Sept 29, 2021: using different getLivePreview functions for SC2 and V/Z1.
