@@ -215,6 +215,15 @@ with Dart and Flutter.
 
 The application appears to work despite the error.
 
+## Use with mobile apps
+
+The application uses a package 
+[theta](https://github.com/codetricity/tpreview/tree/main/packages/theta) that can be used with Flutter.
+
+### Z1 Test
+
+![z1 live preview](packages/theta/docs/images/live_preview.gif)
+
 ## Status
 
 * Sept 29, 2021: using different getLivePreview functions for SC2 and V/Z1.
