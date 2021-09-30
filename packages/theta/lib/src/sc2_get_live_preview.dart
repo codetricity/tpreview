@@ -4,6 +4,10 @@ import 'get_live_preview.dart';
 
 import 'package:http/http.dart' as http;
 
+/// The SC2 has problems with dio, which is used for HTTP connections
+/// this class uses the http package instead of dio.
+/// there is a known problem with an error message when closing
+/// the stream, but the application appears to work.
 class Sc2Preview extends Preview {
   Sc2Preview(StreamController controller) : super(controller);
   http.Client client = http.Client();
