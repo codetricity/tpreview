@@ -287,6 +287,7 @@ preview.getLivePreview(frames: 300);
 
 ## Status
 
+* Sept 30, 2021: SC2 and Z1 now have consistent class interfaces.  SC2 overheats in extended testing.
 * Sept 29, 2021: using different getLivePreview functions for SC2 and V/Z1.
 * Sept 19, 2021: tested with Z1 and appears to work fine.
 * Sept 18, 2021: live preview save to frames is working with SC2
