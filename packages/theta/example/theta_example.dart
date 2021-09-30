@@ -2,13 +2,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:theta/theta.dart';
 
-/// save frames to local storage at 4fps
-
 void main() async {
   const int frames = 5;
   // delay in milliseconds between each frame
-  // SC2 may have problems if the delay is below 250
-  // test with the SC2 upright in a tripod
   const int delay = 500;
   StreamController<List<int>> controller = StreamController();
   List<File> listOfFiles = [];

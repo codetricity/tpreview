@@ -46,7 +46,8 @@ class Sc2SaveFrames extends Command {
       listOfFiles.add(tempFile);
     }
     var frameCount = 0;
-    sc2GetLivePreview(controller, frames: frames, frameDelay: delay);
+    Sc2Preview preview = Sc2Preview(controller);
+    preview.getLivePreview(frames: frames, frameDelay: delay);
     controller.stream.listen((frame) {
       listOfFiles[frameCount].writeAsBytes(frame);
       frameCount++;

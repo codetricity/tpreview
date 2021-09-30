@@ -245,12 +245,17 @@ Steps to use with Flutter.
 5. pass the bytes to `Image.memory()`
 6. enable `gaplessPlayback`
 
+### Step by Step Flutter video tutorial on YouTube
+
+[RICOH THETA Z1 & V Live Preview Developer Tutorial](https://youtu.be/3rqiXiTvapo)
+
 ### Flutter Example for SC2
 
 ```dart
   Widget build(BuildContext context) {
     StreamController controller = StreamController();
-    sc2GetLivePreview(controller, frames: 300);
+    Sc2Preview preview = Sc2Preview(controller);
+    preview.getLivePreview(frames: 300);
   return Scaffold(
 // your GUI code here
  child: StreamBuilder(
