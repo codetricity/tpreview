@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
-import 'package:dio/dio.dart';
-import 'package:theta/src/command.dart';
+import 'package:http/http.dart' as http;
 
-class Preview {
+class Sc2Preview {
   final StreamController controller;
-  Preview(this.controller);
-
-  bool keepRunning = true;
   StreamSubscription? subscription;
+  bool keepRunning = true;
+
+  Sc2Preview(this.controller);
 
   void stopPreview() {
     if (subscription != null) {
@@ -18,34 +18,22 @@ class Preview {
     }
   }
 
-  /// set frames to -1 to run forever
-// SC2 does fairly well at 250ms delay
-// loses about 1 frame out of 150
-// at 300ms, lost 1 frame out of 300
-// at 350ms, lost 1 frame out of 300
-// at 400ms, lost 1 frame out of 300
-
-  Future<void> getLivePreview({int frames = 5, frameDelay = 34}) async {
-    Map<String, dynamic> additionalHeaders = {
+  void getLivePreview({int frames = 5, int frameDelay = 67}) async {
+    Map<String, String> header = {
+      'Content-Type': 'application/json; charset=utf-8',
+      'X-XSRF-Protected': '1',
       'Accept': 'multipart/x-mixed-replace'
     };
+    Map<String, dynamic> body = {'name': 'camera.getLivePreview'};
+    Uri url = Uri.parse('http://192.168.1.1/osc/commands/execute');
 
-    var response = await command('getLivePreview',
-        responseType: ResponseType.stream,
-        additionalHeaders: additionalHeaders);
+    http.Client client = http.Client();
+    var request = http.Request('POST', url);
+    request.body = jsonEncode(body);
+    client.head(url, headers: header);
 
-    Stream dataStream = response.data.stream;
+    http.StreamedResponse response = await client.send(request);
 
-    getFrames(dataStream: dataStream, frames: frames, frameDelay: frameDelay);
-  }
-
-  /// receive a data stream from the camera
-  /// parse the individual JPEG frames
-  /// add each stream to the controller stream
-  void getFrames(
-      {required int frames,
-      required int frameDelay,
-      required Stream dataStream}) {
     List<int> buffer = [];
     int startIndex = -1;
     int endIndex = -1;
@@ -55,9 +43,17 @@ class Preview {
     Stopwatch frameTimer = Stopwatch();
     frameTimer.start();
 
-    subscription = dataStream.listen((chunkOfStream) {
+    subscription = response.stream.listen((chunkOfStream) {
       if (frameCount > frames && frames != -1) {
-        stopPreview();
+        if (subscription != null) {
+          print('cancelling video stream');
+          subscription!.cancel();
+          keepRunning = false;
+          frameTimer.stop();
+          controller.close();
+
+          Future.delayed(Duration(seconds: 1), () => client.close());
+        }
       }
       if (keepRunning) {
         buffer.addAll(chunkOfStream);
