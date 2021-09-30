@@ -249,12 +249,12 @@ Steps to use with Flutter.
 
 [RICOH THETA Z1 & V Live Preview Developer Tutorial](https://youtu.be/3rqiXiTvapo)
 
-### Flutter Example for SC2
+### Flutter Example for Z1 / V
 
 ```dart
   Widget build(BuildContext context) {
     StreamController controller = StreamController();
-    Sc2Preview preview = Sc2Preview(controller);
+    Preview preview = Preview(controller);
     preview.getLivePreview(frames: 300);
   return Scaffold(
 // your GUI code here
@@ -273,6 +273,16 @@ Steps to use with Flutter.
   }),    
 ```
 
+### SC2 Example
+
+__WARNING:__ SC2 library is only partially working. Do not
+use in production applications. This is for testing and
+demonstration only.
+
+```dart
+Sc2Preview preview = Sc2Preview(controller);
+preview.getLivePreview(frames: 300);
+```
 
 
 ## Status
