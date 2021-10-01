@@ -44,15 +44,15 @@ class PrintFrames extends Command {
       frames = -1;
     }
     StreamController<List<int>> controller = StreamController();
-    var preview = Preview(controller);
-    await preview.getLivePreview(frames: frames, frameDelay: delay);
+    Preview.getLivePreview(
+        frames: frames, frameDelay: delay, controller: controller);
 
     controller.stream.listen((frame) {
       print(frame);
       frameCount++;
       if (frames == -1 && duration != -1) {
         if (durationTimer.elapsedMilliseconds > duration * 1000) {
-          preview.stopPreview();
+          Preview.stopPreview();
         }
       }
     });

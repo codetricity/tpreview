@@ -46,8 +46,8 @@ class SaveFrames extends Command {
       listOfFiles.add(tempFile);
     }
     var frameCount = 0;
-    var preview = Preview(controller);
-    await preview.getLivePreview(frames: frames, frameDelay: delay);
+    Preview.getLivePreview(
+        frames: frames, frameDelay: delay, controller: controller);
     controller.stream.listen((frame) {
       listOfFiles[frameCount].writeAsBytes(frame);
       frameCount++;

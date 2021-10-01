@@ -4,18 +4,28 @@ import 'package:dio/dio.dart';
 import 'package:theta/src/command.dart';
 
 class Preview {
-  static bool keepRunning = false;
+  final StreamController controller;
+  Preview(this.controller);
 
-  static void stopPreview() {
-    keepRunning = false;
+  bool keepRunning = true;
+  StreamSubscription? subscription;
+
+  void stopPreview() {
+    if (subscription != null) {
+      keepRunning = false;
+      subscription!.cancel();
+      controller.close();
+    }
   }
 
-  /// initiate connection to camera and get the stream
-  /// this is different for Z1/V and SC2
-  static void getLivePreview(
-      {int frames = 5,
-      frameDelay = 34,
-      required StreamController controller}) async {
+  /// set frames to -1 to run forever
+// SC2 does fairly well at 250ms delay
+// loses about 1 frame out of 150
+// at 300ms, lost 1 frame out of 300
+// at 350ms, lost 1 frame out of 300
+// at 400ms, lost 1 frame out of 300
+
+  Future<void> getLivePreview({int frames = 5, frameDelay = 34}) async {
     Map<String, dynamic> additionalHeaders = {
       'Accept': 'multipart/x-mixed-replace'
     };
@@ -25,25 +35,17 @@ class Preview {
         additionalHeaders: additionalHeaders);
 
     Stream dataStream = response.data.stream;
-    if (!keepRunning) {
-      keepRunning = true;
 
-      getFrames(
-          dataStream: dataStream,
-          frames: frames,
-          frameDelay: frameDelay,
-          controller: controller);
-    }
+    getFrames(dataStream: dataStream, frames: frames, frameDelay: frameDelay);
   }
 
   /// receive a data stream from the camera
   /// parse the individual JPEG frames
   /// add each stream to the controller stream
-  static void getFrames(
+  void getFrames(
       {required int frames,
       required int frameDelay,
-      required Stream dataStream,
-      required StreamController controller}) {
+      required Stream dataStream}) {
     List<int> buffer = [];
     int startIndex = -1;
     int endIndex = -1;
@@ -52,14 +54,10 @@ class Preview {
     // frame delay useful for testing SC2. milliseconds
     Stopwatch frameTimer = Stopwatch();
     frameTimer.start();
-    StreamSubscription? subscription;
 
     subscription = dataStream.listen((chunkOfStream) {
-      if (frameCount > frames && frames != -1 && keepRunning) {
-        if (subscription != null) {
-          subscription.cancel();
-          controller.close();
-        }
+      if (frameCount > frames && frames != -1) {
+        stopPreview();
       }
       if (keepRunning) {
         buffer.addAll(chunkOfStream);
@@ -78,7 +76,6 @@ class Preview {
             if (frameTimer.elapsedMilliseconds > frameDelay) {
               if (frameCount > 0) {
                 controller.add(frame);
-
                 print('framecount $frameCount');
                 frameTimer.reset();
               }
@@ -91,7 +88,7 @@ class Preview {
             buffer = [];
           }
         }
-      } // end keepRunning
+      }
     });
   }
 }

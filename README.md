@@ -245,33 +245,11 @@ Steps to use with Flutter.
 5. pass the bytes to `Image.memory()`
 6. enable `gaplessPlayback`
 
-### Step by Step Flutter video tutorial on YouTube
 
-[RICOH THETA Z1 & V Live Preview Developer Tutorial](https://youtu.be/3rqiXiTvapo)
 
 ### Flutter Example for Z1 / V
 
-```dart
-  Widget build(BuildContext context) {
-    StreamController controller = StreamController();
-    Preview preview = Preview(controller);
-    preview.getLivePreview(frames: 300);
-  return Scaffold(
-// your GUI code here
- child: StreamBuilder(
-  stream: controller.stream,
-  builder: (BuildContext context, AsyncSnapshot snapshot) {
-    if (snapshot.hasData) {
-      var imageData = Uint8List.fromList(snapshot.data);
-      return Image.memory(
-        imageData,
-        gaplessPlayback: true,
-      );
-    } else {
-      return Container();
-    }
-  }),    
-```
+TODO: fill in once library interface stabilizes
 
 ### SC2 Example
 
@@ -279,10 +257,8 @@ __WARNING:__ SC2 library is only partially working. Do not
 use in production applications. This is for testing and
 demonstration only.
 
-```dart
-Sc2Preview preview = Sc2Preview(controller);
-preview.getLivePreview(frames: 300);
-```
+
+TODO: fill in once library interface stabilizes
 
 
 ## Status
