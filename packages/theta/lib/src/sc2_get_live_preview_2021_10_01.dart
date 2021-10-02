@@ -14,8 +14,7 @@ class Sc2Preview extends Preview {
 
   static void stopPreview() {
     keepRunning = false;
-
-    Future.delayed(const Duration(seconds: 1), () => client.close());
+    Future.delayed(Duration(seconds: 1), () => client.close());
   }
 
   static void getLivePreview(
@@ -34,19 +33,17 @@ class Sc2Preview extends Preview {
     var request = http.Request('POST', url);
     request.body = jsonEncode(body);
     client.head(url, headers: header);
-    if (!keepRunning) {
-      client.close();
-      client = http.Client();
-      http.StreamedResponse response = await client.send(request);
-      Stream dataStream = response.stream;
 
+    http.StreamedResponse response = await client.send(request);
+    Stream dataStream = response.stream;
+    if (!keepRunning) {
       keepRunning = true;
-      getFrames(
-          dataStream: dataStream,
-          frames: frames,
-          frameDelay: frameDelay,
-          controller: controller);
     }
+    getFrames(
+        dataStream: dataStream,
+        frames: frames,
+        frameDelay: frameDelay,
+        controller: controller);
   }
 
   /// receive a data stream from the camera
@@ -72,8 +69,7 @@ class Sc2Preview extends Preview {
         if (subscription != null) {
           subscription.cancel();
           controller.close();
-          print('closing client');
-          client.close();
+          stopPreview();
         }
       }
       if (keepRunning) {
